@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 function CardComponent({ film }) {
 
-    console.log(film)
+
 
     const { id, title, director, genre, release_year, abstract, review_vote, imagepath } = film;
 
     return (
         <>
-            <div className="card col-4" >
+            <div className="card col-4 p-4" >
                 <img src={imagepath} className="w-50 mx-auto" alt={title} />
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>
