@@ -21,7 +21,7 @@ function CardComponent({ film }) {
 
     return (
         <>
-            <div className="card col-4 p-4" >
+            <div className="card col-sm-12 col-md-6 col-lg-4 p-4" >
                 <img src={imagepath} className="w-50 mx-auto" alt={title} />
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>

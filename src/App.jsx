@@ -20,7 +20,7 @@ function App() {
 
           </Route>
 
-          <Route path="/*" element={<div>page not found</div>} />
+          <Route path="*" element={<div>page not found</div>} />
 
         </Routes>
 
