@@ -9,7 +9,7 @@ function CardComponent({ film }) {
             if (index < vote) {
                 stelle.push(<i key={index} className="fa-solid fa-star" style={{ color: '#FFD43B' }}></i>);
             } else {
-                stelle.push(<i key={index} className="fa-light fa-star"></i>);
+                stelle.push(<i key={index} className="fa-regular fa-star"></i>);
             }
         }
         return stelle;
