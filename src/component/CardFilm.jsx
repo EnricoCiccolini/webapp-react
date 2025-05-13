@@ -6,7 +6,7 @@ function CardFilm({ film }) {
 
 
 
-    const { id, title, director, genre, release_year, abstract, review_vote, imagepath } = film[0];
+    const { id, title, director, genre, release_year, abstract, review_vote, imagepath } = film;
 
     return (
         <>

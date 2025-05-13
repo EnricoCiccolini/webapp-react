@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import CardFilm from "./CardFilm"
+import RewieuwsCard from "./RewiuwsCard"
 function DettailPage() {
 
     const { id } = useParams()
@@ -17,7 +18,7 @@ function DettailPage() {
 
     useEffect(() => {
         getfilm()
-    }, [])
+    }, [id])
 
 
 
@@ -27,7 +28,7 @@ function DettailPage() {
     return (
         <>
             {film ? <CardFilm film={film} /> : <div><h2>caricamento in corso </h2></div>}
-
+            {film && film.tags ? film.tags.map(tag => (<RewieuwsCard key={tag.id} tags={tag} />)) : <div><h2>Nessun commento disponibile</h2></div>}
         </>
     )
 }
