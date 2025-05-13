@@ -1,19 +1,9 @@
 import { Link } from "react-router-dom";
+import StarComponet from "./StarComponent";
 
 function CardComponent({ film }) {
 
-    function star(vote) {
 
-        const stelle = [];
-        for (let index = 0; index < 5; index++) {
-            if (index < vote) {
-                stelle.push(<i key={index} className="fa-solid fa-star" style={{ color: '#FFD43B' }}></i>);
-            } else {
-                stelle.push(<i key={index} className="fa-regular fa-star"></i>);
-            }
-        }
-        return stelle;
-    }
 
 
 
@@ -29,7 +19,8 @@ function CardComponent({ film }) {
                     <p className="card-text">trama: {abstract}</p>
                     <p className="card-text">genere: {genre}</p>
                     <p className="card-text">anno di uscita: {release_year}</p>
-                    <p className="card-text">voto medio: {star(review_vote)}</p>
+                    <p className="card-text">voto medio: {<StarComponet vote={review_vote} />}</p>
+                    <p className="card-text">voto medio: {review_vote}</p>
                     <Link to={`/${id}`} className="btn btn-primary">vai al dettaglio </Link>
                 </div>
             </div>
