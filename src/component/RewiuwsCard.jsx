@@ -1,12 +1,12 @@
 import StarComponet from "./StarComponent";
 
-function RewieuwsCard({ tags }) {
+function RewieuwsCard({ reviews }) {
 
 
-    const { name, text, vote } = tags
+    const { name, text, vote } = reviews
 
 
-    console.log(tags)
+
 
     return (
         <>
@@ -21,9 +21,9 @@ function RewieuwsCard({ tags }) {
                         <StarComponet vote={vote} />
                     </div>
                 </div>
-                <div class="card-body">
+                <div className="card-body">
 
-                    <p class="card-text">{text}</p>
+                    <p className="card-text">{text}</p>
                 </div>
             </div>
         </>

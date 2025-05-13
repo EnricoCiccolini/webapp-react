@@ -12,9 +12,10 @@ function CardFilm({ film }) {
         <>
 
             <div className="card mb-3" >
+
                 <div className="row g-0">
                     <div className="col-md-4">
-                        <img src={imagepath} className="img-fluid rounded-start w-100" alt={title} />
+                        <img src={imagepath} className="img-fluid rounded-start w-50" alt={title} />
                     </div>
                     <div className="col-md-8">
                         <div className="card-body d-flex">
@@ -26,11 +27,13 @@ function CardFilm({ film }) {
                                 <p className="card-text">anno di uscita: {release_year}</p>
 
                             </div>
-                            <p className="card-text"> <strong>voto medio:</strong> {<StarComponet vote={review_vote} />}</p>
+                            <p className="card-text flex-shrink-2"> {<StarComponet vote={review_vote} />}</p>
 
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </>
     )

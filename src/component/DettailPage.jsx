@@ -24,11 +24,13 @@ function DettailPage() {
 
 
 
-    console.log(film)
     return (
         <>
-            {film ? <CardFilm film={film} /> : <div><h2>caricamento in corso </h2></div>}
-            {film && film.tags ? film.tags.map(tag => (<RewieuwsCard key={tag.id} tags={tag} />)) : <div><h2>Nessun commento disponibile</h2></div>}
+            <div className="container">
+                {film ? <CardFilm film={film} /> : <div><h2>caricamento in corso </h2></div>}
+
+                {film && film.reviews ? film.reviews.map(ele => (<RewieuwsCard key={ele.id} reviews={ele} />)) : <div><h2>Nessun commento disponibile</h2></div>}
+            </div>
         </>
     )
 }
