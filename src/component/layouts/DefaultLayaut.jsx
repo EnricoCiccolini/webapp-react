@@ -7,10 +7,10 @@ function DefaultLayaut() {
         <>
             <header>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                    <div className="container-fluid">
+                    <div className="container-fluid d-flex justify-content-space-beetween">
                         <Link className="navbar-brand" to={"/"}>Movies</Link>
 
-
+                        <Link className="navbar-brand" to={"/addfilm"}>add movies</Link>
                     </div>
                 </nav>
             </header>

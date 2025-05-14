@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Main from './component/Homepages'
 import DettailPage from './component/DettailPage'
 import DefaultLayaut from './component/layouts/DefaultLayaut'
+import FormFilm from './component/FormFilm'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 
             <Route path="/" element={<Main />} />
             <Route path="/:id" element={<DettailPage />} />
+            <Route path="/addfilm" element={<FormFilm />} />
 
           </Route>
 
