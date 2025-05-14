@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import CardFilm from "./CardFilm"
 import RewieuwsCard from "./RewiuwsCard"
+import FormReviuws from "./FormReviuws"
 function DettailPage() {
 
     const { id } = useParams()
@@ -26,10 +27,14 @@ function DettailPage() {
 
     return (
         <>
-            <div className="container">
+            <div className="container ">
                 {film ? <CardFilm film={film} /> : <div><h2>caricamento in corso </h2></div>}
 
                 {film && film.reviews ? film.reviews.map(ele => (<RewieuwsCard key={ele.id} reviews={ele} />)) : <div><h2>Nessun commento disponibile</h2></div>}
+
+            </div>
+            <div className="container">
+                <FormReviuws id={id} reload={getfilm} />
             </div>
         </>
     )

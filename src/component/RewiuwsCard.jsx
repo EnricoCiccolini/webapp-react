@@ -3,8 +3,7 @@ import StarComponet from "./StarComponent";
 function RewieuwsCard({ reviews }) {
 
 
-    const { name, text, vote } = reviews
-
+    const { name, text, vote, updated_at } = reviews
 
 
 
@@ -22,8 +21,10 @@ function RewieuwsCard({ reviews }) {
                     </div>
                 </div>
                 <div className="card-body">
-
-                    <p className="card-text">{text}</p>
+                    <div className=" d-flex justify-content-between">
+                        <p className="card-text">{text}</p>
+                        <p className="card-text">aggiornata il: {updated_at}</p>
+                    </div>
                 </div>
             </div>
         </>
