@@ -6,23 +6,25 @@ function FormFilm() {
     const [isGood, setIsGood] = useState(false)
     const [isBaad, setIsBaad] = useState(false)
     const [message, setMessage] = useState(false)
+
+
     const defaultValue = {
         "title": "",
         "director": "",
-        "image": "",
         "genre": "",
         "relase_year": "",
         "abstract": ""
     };
 
-    const [formdata, setFormData] = useState(defaultValue);
+    const [formdata, setFormData] = useState({ ...defaultValue, image: null });
 
 
     function changeFormObject(e) {
-        const value = e.target.value;
+        const { name, value, type, files } = e.target;
+        const newValue = type === "file" ? files[0] : value;
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [e.target.name]: value
+            [name]: newValue
         }));
     }
 
@@ -34,7 +36,22 @@ function FormFilm() {
         setMessage('')
         setIsBaad(false)
         setIsGood(false)
-        axios.post(`http://127.0.0.1:3004/films/`, formdata)
+
+        const formDataToSend = new FormData();
+        formDataToSend.append('title', formdata.title);
+        formDataToSend.append('director', formdata.director);
+        if (formdata.image) {
+            formDataToSend.append('image', formdata.image);
+        }
+        formDataToSend.append('genre', formdata.genre);
+        formDataToSend.append('relase_year', formdata.relase_year);
+        formDataToSend.append('abstract', formdata.abstract);
+
+        axios.post(`http://127.0.0.1:3004/films/`, formDataToSend, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
             .then(response => { setIsGood(true), setMessage('film caricato con successo') })
             .catch(err => {
                 setIsBaad(true),
@@ -42,14 +59,13 @@ function FormFilm() {
                     setMessage(`c'è stato un problema nel caricamento del film `)
             });
 
-        setFormData(defaultValue);
+        setFormData({ ...defaultValue, image: null });
         timer = setTimeout(() => {
             setIsBaad(false)
             setIsGood(false)
         }, 5000)
 
     }
-
 
 
 
@@ -131,7 +147,6 @@ function FormFilm() {
                                 <input
                                     type="file"
                                     name="image"
-                                    value={formdata.image}
                                     onChange={changeFormObject}
                                     className="form-control"
                                 />
