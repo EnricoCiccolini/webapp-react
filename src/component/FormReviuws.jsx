@@ -5,10 +5,9 @@ import axios from 'axios';
 function FormReviuws({ id, reload }) {
 
 
-    console.log(id)
     const defaultValue = {
         "name": "",
-        "vote": 5,
+        "vote": 1,
         "text": ""
     };
 
