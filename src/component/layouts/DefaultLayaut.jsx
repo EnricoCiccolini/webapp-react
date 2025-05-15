@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
 import { Outlet } from "react-router-dom"
+import { GlobalContex } from "../contex/globalprovider"
+import LoaderPage from "../LoaderPage"
+import { useContext } from "react"
 function DefaultLayaut() {
-
+    const { loading } = useContext(GlobalContex)
 
     return (
         <>
@@ -16,6 +19,7 @@ function DefaultLayaut() {
             </header>
 
             <main>
+                {loading ? <LoaderPage /> : ""}
                 <Outlet />
             </main>
         </>

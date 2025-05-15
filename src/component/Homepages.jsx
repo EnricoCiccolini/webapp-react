@@ -70,7 +70,7 @@ function Main() {
             <div className="container text-center">
                 <div className="row">
 
-                    {loading ? <LoaderPage /> : films.map(ele => (<CardComponent key={ele.id} film={ele} />))}
+                    {!films ? <LoaderPage /> : films.map(ele => (<CardComponent key={ele.id} film={ele} />))}
 
                 </div>
             </div>
