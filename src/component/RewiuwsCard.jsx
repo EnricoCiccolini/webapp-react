@@ -1,11 +1,14 @@
-import StarComponet from "./StarComponent";
+import StarComponet from "./StarComponent"
+import { DateTime } from "luxon"
+
 
 function RewieuwsCard({ reviews }) {
 
 
+
     const { name, text, vote, updated_at } = reviews
 
-
+    const formattedDate = DateTime.fromISO(updated_at).setLocale('ru').toLocaleString();
 
     return (
         <>
@@ -23,7 +26,7 @@ function RewieuwsCard({ reviews }) {
                 <div className="card-body">
                     <div className=" d-flex justify-content-between">
                         <p className="card-text">{text}</p>
-                        <p className="card-text">aggiornata il: {updated_at}</p>
+                        <p className="card-text">aggiornata il: {formattedDate}</p>
                     </div>
                 </div>
             </div>

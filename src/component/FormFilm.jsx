@@ -13,7 +13,8 @@ function FormFilm() {
         "director": "",
         "genre": "",
         "relase_year": "",
-        "abstract": ""
+        "abstract": "",
+        "image": null
     };
 
     const [formdata, setFormData] = useState(defaultValue);

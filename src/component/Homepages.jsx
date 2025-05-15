@@ -2,24 +2,37 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import CardComponent from "./CardComponent"
+import { GlobalContex } from "./contex/globalprovider"
+import LoaderPage from "./LoaderPage"
+import { useContext } from "react"
+
+
+
+
 
 
 
 
 function Main() {
+    const { loading, setLoading } = useContext(GlobalContex)
 
 
     const [films, setfilms] = useState([])
     const [resarc, setResarc] = useState("")
 
     function getfilms() {
+        setLoading(true)
         axios.get('http://127.0.0.1:3004/films', {
             params: {
                 resarc
             }
         })
-            .then(response => setfilms(response.data))
-            .catch(err => console.log(err))
+            .then(response => setfilms(response.data, setLoading(false)))
+            .catch(err => console.log(err), setLoading(false))
+
+
+
+
     }
 
 
@@ -57,7 +70,7 @@ function Main() {
             <div className="container text-center">
                 <div className="row">
 
-                    {films ? films.map(ele => (<CardComponent key={ele.id} film={ele} />)) : <div> nessun film </div>}
+                    {loading ? <LoaderPage /> : films.map(ele => (<CardComponent key={ele.id} film={ele} />))}
 
                 </div>
             </div>

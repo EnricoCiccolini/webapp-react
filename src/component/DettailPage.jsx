@@ -4,17 +4,28 @@ import axios from "axios"
 import CardFilm from "./CardFilm"
 import RewieuwsCard from "./RewiuwsCard"
 import FormReviuws from "./FormReviuws"
+import { GlobalContex } from "./contex/globalprovider"
+import LoaderPage from "./LoaderPage"
+import { useContext } from "react"
+
+
+
 function DettailPage() {
+    const { loading, setLoading } = useContext(GlobalContex)
+
 
     const { id } = useParams()
 
     const [film, setFilm] = useState()
 
     function getfilm() {
-        axios.get('http://127.0.0.1:3004/films/' + id)
-            .then(response => setFilm(response.data))
 
-            .catch(err => console.log(err))
+        setLoading(true)
+        axios.get('http://127.0.0.1:3004/films/' + id)
+            .then(response => setFilm(response.data), setLoading(false))
+
+            .catch(err => console.log(err)), setLoading(false)
+
     }
 
     useEffect(() => {
@@ -28,9 +39,9 @@ function DettailPage() {
     return (
         <>
             <div className="container ">
-                {film ? <CardFilm film={film} /> : <div><h2>caricamento in corso </h2></div>}
+                {loading ? <LoaderPage /> : <CardFilm film={film} />}
 
-                {film && film.reviews ? film.reviews.map(ele => (<RewieuwsCard key={ele.id} reviews={ele} />)) : <div><h2>Nessun commento disponibile</h2></div>}
+                {loading && film.reviews ? film.reviews.map(ele => (<RewieuwsCard key={ele.id} reviews={ele} />)) : <div><h2>Nessun commento disponibile</h2></div>}
 
             </div>
             <div className="container">
