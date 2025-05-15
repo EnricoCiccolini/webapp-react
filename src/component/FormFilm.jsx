@@ -16,15 +16,62 @@ function FormFilm() {
         "abstract": ""
     };
 
-    const [formdata, setFormData] = useState({ ...defaultValue, image: null });
+    const [formdata, setFormData] = useState(defaultValue);
 
+
+    // function changeFormObject(e) {
+    //     const { name, value, type, files } = e.target;
+    //     const newValue = type === "file" ? files[0] : value;
+    //     setFormData((prevFormData) => ({
+    //         ...prevFormData,
+    //         [name]: newValue
+    //     }));
+    // }
+
+
+    // function sendForm(e) {
+    //     e.preventDefault();
+    //     let timer
+    //     clearTimeout(timer)
+    //     setMessage('')
+    //     setIsBaad(false)
+    //     setIsGood(false)
+
+    //     const formDataToSend = new FormData();
+    //     formDataToSend.append('title', formdata.title);
+    //     formDataToSend.append('director', formdata.director);
+    //     if (formdata.image) {
+    //         formDataToSend.append('image', formdata.image);
+    //     }
+    //     formDataToSend.append('genre', formdata.genre);
+    //     formDataToSend.append('relase_year', formdata.relase_year);
+    //     formDataToSend.append('abstract', formdata.abstract);
+
+    //     axios.post(`http://127.0.0.1:3004/films/`, formDataToSend, {
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data',
+    //         },
+    //     })
+    //         .then(response => { setIsGood(true), setMessage('film caricato con successo') })
+    //         .catch(err => {
+    //             setIsBaad(true),
+    //                 console.log(err),
+    //                 setMessage(`c'è stato un problema nel caricamento del film `)
+    //         });
+
+    //     setFormData({ ...defaultValue, image: null });
+    //     timer = setTimeout(() => {
+    //         setIsBaad(false)
+    //         setIsGood(false)
+    //     }, 5000)
+
+    // }
 
     function changeFormObject(e) {
-        const { name, value, type, files } = e.target;
-        const newValue = type === "file" ? files[0] : value;
+        const value = e.target.type === 'file' ? e.target.files[0] : e.target.value;
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [name]: newValue
+            [e.target.name]: value
         }));
     }
 
@@ -36,18 +83,7 @@ function FormFilm() {
         setMessage('')
         setIsBaad(false)
         setIsGood(false)
-
-        const formDataToSend = new FormData();
-        formDataToSend.append('title', formdata.title);
-        formDataToSend.append('director', formdata.director);
-        if (formdata.image) {
-            formDataToSend.append('image', formdata.image);
-        }
-        formDataToSend.append('genre', formdata.genre);
-        formDataToSend.append('relase_year', formdata.relase_year);
-        formDataToSend.append('abstract', formdata.abstract);
-
-        axios.post(`http://127.0.0.1:3004/films/`, formDataToSend, {
+        axios.post(`http://127.0.0.1:3004/films/`, formdata, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
@@ -59,7 +95,7 @@ function FormFilm() {
                     setMessage(`c'è stato un problema nel caricamento del film `)
             });
 
-        setFormData({ ...defaultValue, image: null });
+        setFormData(defaultValue);
         timer = setTimeout(() => {
             setIsBaad(false)
             setIsGood(false)
