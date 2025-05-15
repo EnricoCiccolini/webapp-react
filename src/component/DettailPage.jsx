@@ -39,9 +39,9 @@ function DettailPage() {
     return (
         <>
             <div className="container ">
-                {loading ? <LoaderPage /> : <CardFilm film={film} />}
+                {loading || !film ? <LoaderPage /> : <CardFilm film={film} />}
 
-                {loading && film.reviews ? film.reviews.map(ele => (<RewieuwsCard key={ele.id} reviews={ele} />)) : <div><h2>Nessun commento disponibile</h2></div>}
+                {film && film.reviews ? film.reviews.map(ele => (<RewieuwsCard key={ele.id} reviews={ele} />)) : <div><h2>Nessun commento disponibile</h2></div>}
 
             </div>
             <div className="container">
